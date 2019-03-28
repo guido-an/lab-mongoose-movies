@@ -75,26 +75,15 @@ router.get('/celebrities/:id/edit', (req, res) => {
 
 /** POST EDIT  */
 router.post('/celebrities/:id', (req, res) => {
-  
-  // const { name, occupation, catchPhrase } = req.body;
-  // Celebrity.update( {_id: req.query.celebrity_id }, { $set: { name, occupation, catchPhrase } }, { new: true } )
-  Celebrity.update({ _id: req.body.id }, { $set : { name: req.body.name }}, { new: true })
+
+  Celebrity.update( {_id: req.params.id }, req.body)
+
   .then((celebrity) => {
     res.redirect('/celebrities');    
   })
   .catch((error) => {
     console.log(error);
   })
-
-
-  //Celebrity.findOneAndUpdate( { _id: req.body.id }, { $set: { name: req.body.name } }  )
-   
-  // .then((celebrity) => {
-  //   res.redirect('/celebrities');     //  redirect 
-  // })
-  // .catch((error) => {
-  //   console.log(error);
-  // })
 
 });
 
